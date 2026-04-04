@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grants — SUIS Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0a1420;--green:#6ecfa3;--green-dim:rgba(110,207,163,0.4);
+  --white:#fff;--w60:rgba(255,255,255,0.6);--w40:rgba(255,255,255,0.4);
+  --w20:rgba(255,255,255,0.2);--w10:rgba(255,255,255,0.1);
+  --text:#1a1a1a;--muted:#6b6b6b;--border:rgba(0,0,0,0.1);--bg:#f8f7f5;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);overflow-x:hidden;background:#fff;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(10,20,32,0.88);backdrop-filter:blur(14px);border-bottom:.5px solid var(--w10);transition:background .4s;}
+.nav.scrolled{background:rgba(10,20,32,0.98);}
+.nav-brand{text-decoration:none;}
+.nav-brand .main{font-family:'DM Serif Display',serif;font-size:18px;color:var(--white);letter-spacing:-.01em;}
+.nav-brand .sub{font-size:9px;font-weight:300;color:var(--w40);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:11px;color:var(--w60);text-decoration:none;letter-spacing:.07em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);}
+.page-header{background:var(--navy);padding:7rem 3rem 3rem;border-bottom:.5px solid rgba(255,255,255,.08);}
+.page-header .label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--w40);margin-bottom:.5rem;display:flex;align-items:center;gap:8px;}
+.page-header .label::before{content:'';display:inline-block;width:20px;height:.5px;background:var(--w40);}
+.page-header h1{font-family:'DM Serif Display',serif;font-size:40px;color:var(--white);line-height:1.1;letter-spacing:-.02em;}
+.page-header h1 em{color:var(--green);font-style:italic;}
+.section{padding:4rem 3rem;border-bottom:.5px solid var(--border);}
+.section-bg{background:var(--bg);}
+.sec-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.sec-label-kr{font-size:10px;color:var(--muted);opacity:.6;margin-bottom:1.5rem;}
+.contact-bar{background:var(--navy);color:var(--white);padding:3.5rem 3rem;}
+.cb-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;}
+.cb-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--white);margin-bottom:.4rem;}
+.cb-sub{font-size:13px;color:rgba(255,255,255,.45);line-height:1.8;}
+.cb-info-row{display:flex;flex-wrap:wrap;gap:2rem;border-top:.5px solid rgba(255,255,255,.12);padding-top:1.5rem;}
+.cb-info-item{display:flex;flex-direction:column;gap:4px;}
+.cb-info-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.cb-info-val{font-size:15px;color:var(--white);}
+.cb-info-val a{color:var(--green);text-decoration:none;transition:color .2s;}
+.cb-info-val a:hover{color:var(--white);}
+.footer{padding:1.25rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+.footer-l{font-size:11px;color:var(--muted);}
+.footer-l strong{color:var(--text);font-weight:500;}
+.footer-r{font-size:11px;color:var(--muted);}
+@media(max-width:768px){
+  .nav{padding:.9rem 1.5rem;}.nav-links{gap:1rem;}.nav-links a{font-size:10px;}
+  .section,.page-header{padding:3rem 1.5rem;}
+  .contact-bar{padding:2.5rem 1.5rem;}
+  .cb-info-row{flex-direction:column;gap:1.25rem;}
+  .footer{padding:1rem 1.5rem;flex-direction:column;gap:.5rem;}
+}
+
+.nrf-card{background:#fff;border:.5px solid var(--border);border-radius:12px;padding:2.5rem;margin-bottom:1.5rem;}
+.nrf-card:hover{border-color:rgba(110,207,163,.5);}
+.nrf-period{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.6rem;}
+.nrf-title{font-family:'DM Serif Display',serif;font-size:20px;line-height:1.4;margin-bottom:.5rem;color:var(--text);}
+.nrf-agency{font-size:13px;color:var(--muted);margin-bottom:1.25rem;}
+.nrf-desc{font-size:14px;line-height:1.85;color:var(--text);margin-bottom:1.25rem;padding:1.25rem;background:var(--bg);border-radius:8px;border-left:3px solid var(--green);}
+.nrf-amount{display:inline-block;font-size:12px;font-weight:500;padding:4px 12px;background:var(--navy);color:var(--green);border-radius:2px;}
+.pi-badge{display:inline-block;font-size:9px;padding:2px 7px;background:#EAF3DE;color:#27500A;border-radius:2px;margin-left:8px;letter-spacing:.04em;}
+.sub-badge{display:inline-block;font-size:9px;padding:2px 6px;background:#E6F1FB;color:#0C447C;border-radius:2px;margin-left:6px;}
+.grant-list{display:flex;flex-direction:column;gap:0;}
+.grant-row{display:grid;grid-template-columns:130px 1fr;gap:1.25rem;padding:1.1rem 0;border-bottom:.5px solid var(--border);align-items:start;}
+.grant-row:first-child{border-top:.5px solid var(--border);}
+.grant-period{font-size:12px;color:var(--muted);padding-top:2px;line-height:1.6;}
+.grant-title{font-size:14px;line-height:1.6;margin-bottom:3px;color:var(--text);}
+.grant-agency{font-size:12px;color:var(--muted);font-style:italic;}
+</style></head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="index.html">
+    <div class="main">SUIS Lab</div>
+    <div class="sub">지속가능한 도시산업공간 연구실</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="news.html">News</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="grants.html">Grants</a></li>
+    <li><a href="pi.html">PI</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="label">SUIS Lab · Research</div>
+  <h1>Grants &amp; <em>Projects</em></h1>
+</div>
+
+<section class="section">
+  <div class="sec-label">NRF Major Grants — Principal Investigator</div>
+  <div class="sec-label-kr">한국연구재단 주요 과제 (연구책임)</div>
+
+  <div class="nrf-card">
+    <div class="nrf-period">Mar.2022 – Feb.2026</div>
+    <div class="nrf-title">An empirical analysis on the mechanism of digitalization of production and industrial reurbanization <span class="pi-badge">P.I.</span></div>
+    <div class="nrf-agency">National Research Foundation of Korea — 한국연구재단 중견연구</div>
+    <div class="nrf-desc">
+      본 연구과제는 4차 산업혁명에 따른 생산의 디지털화가 '산업의 재도시화(industrial reurbanization)'를 견인하는 4대 메커니즘을 세계 최초로 정량적·실증적으로 규명하였다는 점에서 연구의 우수성과 창의성이 탁월함. 단순히 개념적 논의에 머물던 기존 연구의 한계를 극복하고, 마이크로 공간 빅데이터를 융합해 '도시입지지수(ULI)'를 자체 개발하였으며, 연구의 결과물은 획일적인 공해유발 제조업 배제정책에서 벗어나, 도심 내 친환경·고밀도 첨단 산업공간 조성을 위한 과학적 근거를 제공하며, 도시 내 고부가가치 일자리 창출 및 탄소중립적 도시 생태계 구축을 위한 정책 및 계획 마련에 주요한 가이드라인을 제공함.
+    </div>
+    <span class="nrf-amount">737M KRW</span>
+  </div>
+
+  <div class="nrf-card">
+    <div class="nrf-period">Sep.2020 – Feb.2022</div>
+    <div class="nrf-title">Industrial variety and externality of vertical factory in metropolitan areas: focusing on job creation and innovation <span class="pi-badge">P.I.</span></div>
+    <div class="nrf-agency">National Research Foundation of Korea — 한국연구재단 중견연구 · 대도시 수직형 공장의 산업다양성과 외부성에 관한 연구</div>
+    <div class="nrf-desc">
+      본 연구과제에서는 건물이라는 미세한 공간단위, 특히 수직형 공장과 같은 입체·복합 도시산업공간에서의 산업의 집적(agglomeration)의 형태, 즉 산업구성의 다양성(industrial variety)이 고용 및 혁신 창출에 어떤 영향을 미치는지를 실증적으로 분석하고자 한 연구임.
+    </div>
+    <span class="nrf-amount">150M KRW</span>
+  </div>
+
+  <div class="nrf-card">
+    <div class="nrf-period">Mar.2017 – Feb.2020</div>
+    <div class="nrf-title">Industrial (Re)urbanization and Vertical Mixed-use Urban Industrial Space for the 4th Industrial Revolution <span class="pi-badge">P.I.</span></div>
+    <div class="nrf-agency">National Research Foundation of Korea — 한국연구재단 신진연구 · 4차 산업혁명과 산업의 (재)도시화 및 도시산업공간의 복합·입체적 활용에 관한 연구</div>
+    <div class="nrf-desc">
+      본 연구는 4차 산업혁명 시대 산업의 (재)도시화 및 도시산업공간의 복합·입체적 활용에 관한 실증분석과 기업실태 조사를 통해 전통산업과 구분되는 4차 산업혁명 시대 도시산업만의 독특한 입지적 수요특성을 이론적으로 체계화하고 이를 반영한 도시산업공간의 개발방향을 제시하였음.
+    </div>
+    <span class="nrf-amount">150M KRW</span>
+  </div>
+</section>
+
+<section class="section section-bg">
+  <div class="sec-label">All PI Grants — 연구책임 전체 과제</div>
+  <div class="sec-label-kr">연구책임 과제 목록</div>
+  <div class="grant-list">
+    <div class="grant-row"><div class="grant-period">2023.10–2024.03</div><div><div class="grant-title">디지털화와 산업의 도시입지 가능성 실증분석 <span class="pi-badge">P.I.</span></div><div class="grant-agency">계명대학교 우수학술연구비 — 10M KRW</div></div></div>
+    <div class="grant-row"><div class="grant-period">2022.05–2022.10</div><div><div class="grant-title">로봇산업의 지역분포 특성분석 <span class="pi-badge">P.I.</span></div><div class="grant-agency">계명대학교 우수학술연구비 — 10M KRW</div></div></div>
+    <div class="grant-row"><div class="grant-period">2021.06–2023.05</div><div><div class="grant-title">산업단지 및 스마트팩토리 입지 특성 연구 <span class="pi-badge">P.I.</span></div><div class="grant-agency">계명대학교 Young스칼라연구비 — 50M KRW</div></div></div>
+    <div class="grant-row"><div class="grant-period">2021.10–2022.03</div><div><div class="grant-title">스마트공장 수요-공급기업 입지특성과 지역파급효과 분석 <span class="pi-badge">P.I.</span></div><div class="grant-agency">계명대학교 우수학술연구비 — 5M KRW</div></div></div>
+    <div class="grant-row"><div class="grant-period">2020.12–2021.05</div><div><div class="grant-title">수직형 공장의 개발특성 및 공간적 분포특성 분석 <span class="pi-badge">P.I.</span></div><div class="grant-agency">계명대학교 우수학술연구비 — 15M KRW</div></div></div>
+    <div class="grant-row"><div class="grant-period">2017.09–2018.08</div><div><div class="grant-title">환경정의의 공간적 특성에 관한 연구 <span class="pi-badge">P.I.</span></div><div class="grant-agency">계명대학교 신임교원정착연구 — 12M KRW</div></div></div>
+    <div class="grant-row"><div class="grant-period">2016.09–2017.08</div><div><div class="grant-title">복합·입체 도시산업의 입지패턴 분석 <span class="pi-badge">P.I.</span></div><div class="grant-agency">계명대학교 신임교원정착연구 — 12M KRW</div></div></div>
+    <div class="grant-row"><div class="grant-period">2016.01–2016.08</div><div><div class="grant-title">도시산업공간 인벤토리 분석을 통한 산업입지 정책방안 연구 <span class="pi-badge">P.I.</span></div><div class="grant-agency">국토연구원 기본연구 — 65M KRW</div></div></div>
+    <div class="grant-row"><div class="grant-period">2015.03–2015.06</div><div><div class="grant-title">고용접근성에 기반한 산업단지 교외화 특성분석 및 산업입지 정책방향 <span class="pi-badge">P.I.</span></div><div class="grant-agency">국토연구원 수시연구 — 10M KRW</div></div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sec-label">Collaborative Projects — 참여연구</div>
+  <div class="sec-label-kr">참여 과제 목록</div>
+  <div class="grant-list">
+    <div class="grant-row"><div class="grant-period">2019.10–2020.05</div><div><div class="grant-title">혁신도시 정책성과 평가 <span class="sub-badge">참여</span></div><div class="grant-agency">한국지역학회 — 국토연구원 수탁과제</div></div></div>
+    <div class="grant-row"><div class="grant-period">2019.07–2020.01</div><div><div class="grant-title">2040년 행정중심복합도시권 광역도시계획수립연구 광역계획권 분석 및 설정 <span class="sub-badge">참여</span></div><div class="grant-agency">대한지리학회 — 국토연구원 수탁과제</div></div></div>
+    <div class="grant-row"><div class="grant-period">2019.02–2020.10</div><div><div class="grant-title">OO 국가산업단지 특화전략수립 연구용역 <span class="sub-badge">참여</span></div><div class="grant-agency">대한국토도시계획학회 — 한국토지주택공사</div></div></div>
+    <div class="grant-row"><div class="grant-period">2018.11–2019.02</div><div><div class="grant-title">에코사이언스파크 연구개발강소특구 타당성 조사 및 육성종합계획수립 <span class="sub-badge">참여</span></div><div class="grant-agency">인천연구원 — 인천광역시</div></div></div>
+    <div class="grant-row"><div class="grant-period">2017.02–2017.05</div><div><div class="grant-title">성서캠퍼스 동문 일대 효율화 방안 연구 <span class="sub-badge">참여</span></div><div class="grant-agency">계명대학교 정책연구</div></div></div>
+    <div class="grant-row"><div class="grant-period">2016.06–2016.08</div><div><div class="grant-title">한반도 북방지역 초국경 산업벨트 구상 연구 <span class="sub-badge">참여</span></div><div class="grant-agency">국토연구원 수시과제</div></div></div>
+    <div class="grant-row"><div class="grant-period">2016.02–2016.08</div><div><div class="grant-title">2016년 산업입지정보망 운영관리 <span class="sub-badge">참여</span></div><div class="grant-agency">국토연구원</div></div></div>
+    <div class="grant-row"><div class="grant-period">2015.01–2015.12</div><div><div class="grant-title">경제산업구조 재편에 대응한 대도시권 발전방향 연구 <span class="sub-badge">참여</span></div><div class="grant-agency">국토연구원 기본연구</div></div></div>
+    <div class="grant-row"><div class="grant-period">2014.04–2014.12</div><div><div class="grant-title">해수면 상승 농경지 영향평가 시스템 구축 및 해수면 상승에 따른 농경지 범람 피해 평가 <span class="sub-badge">참여</span></div><div class="grant-agency">한국환경정책·평가연구원 — 농촌진흥청</div></div></div>
+    <div class="grant-row"><div class="grant-period">2014.01–2014.12</div><div><div class="grant-title">해양에너지 개발을 위한 전략환경평가 방안 연구: I. 해상풍력사업의 입지선정을 중심으로 <span class="sub-badge">참여</span></div><div class="grant-agency">한국환경정책·평가연구원 일반연구</div></div></div>
+    <div class="grant-row"><div class="grant-period">2014.01–2014.12</div><div><div class="grant-title">환경영향평가서 검토 / 전략환경영향평가서 검토 <span class="sub-badge">참여</span></div><div class="grant-agency">한국환경정책·평가연구원</div></div></div>
+    <div class="grant-row"><div class="grant-period">2013.12–2014.02</div><div><div class="grant-title">충청남도 환경용량 평가 및 지표개발 연구용역 <span class="sub-badge">참여</span></div><div class="grant-agency">한국환경정책·평가연구원 — 충청남도 환경정책과</div></div></div>
+    <div class="grant-row"><div class="grant-period">2013.01–2013.12</div><div><div class="grant-title">조류발전사업 환경평가방안 연구 <span class="sub-badge">참여</span></div><div class="grant-agency">한국환경정책·평가연구원 기본연구</div></div></div>
+    <div class="grant-row"><div class="grant-period">2011.09–2012.05</div><div><div class="grant-title">Material flow modeling in sustainable industrial systems within urban centers <span class="sub-badge">참여</span></div><div class="grant-agency">Georgia Tech — National Science Foundation</div></div></div>
+    <div class="grant-row"><div class="grant-period">2011.05–2011.07</div><div><div class="grant-title">부산광역시 기후변화 적응대책 세부시행계획 <span class="sub-badge">참여</span></div><div class="grant-agency">부산발전연구원 — 부산광역시</div></div></div>
+    <div class="grant-row"><div class="grant-period">2011.01–2011.05</div><div><div class="grant-title">Global cities: benchmarking, analysis and design concepts to eco city design <span class="sub-badge">참여</span></div><div class="grant-agency">Ecological urbanism studio, Georgia Tech</div></div></div>
+    <div class="grant-row"><div class="grant-period">2010.01–2010.12</div><div><div class="grant-title">Assessing Solar Availability of Urban Form Using 3D GIS; Carbon footprint model; Hydrological cycle <span class="sub-badge">참여</span></div><div class="grant-agency">School of City and Regional Planning — Georgia Tech Foundation</div></div></div>
+    <div class="grant-row"><div class="grant-period">2009.02–2009.12</div><div><div class="grant-title">환경평가를 활용한 토지이용계획 수립방안에 관한 연구 / 기후변화 대응을 위한 적정 하천 공간 확보방안 연구 I <span class="sub-badge">참여</span></div><div class="grant-agency">한국환경정책·평가연구원 기본연구</div></div></div>
+  </div>
+</section>
+
+
+<div class="contact-bar" id="contact">
+  <div class="cb-top">
+    <div>
+      <div class="cb-title">Get in Touch</div>
+      <div class="cb-sub">가천대학교 도시계획학과 지속가능한 도시산업공간 연구실</div>
+    </div>
+  </div>
+  <div class="cb-info-row">
+    <div class="cb-info-item">
+      <div class="cb-info-label">Address</div>
+      <div class="cb-info-val">1342 Seongnam-daero, Sujeong-gu, Seongnam-si<br>Gyeonggi-do 13120, Republic of Korea</div>
+    </div>
+    <div class="cb-info-item">
+      <div class="cb-info-label">Email</div>
+      <div class="cb-info-val"><a href="mailto:jeongilp@gachon.ac.kr">jeongilp@gachon.ac.kr</a></div>
+    </div>
+    <div class="cb-info-item">
+      <div class="cb-info-label">Office</div>
+      <div class="cb-info-val">+82 31 750 5279</div>
+    </div>
+    <div class="cb-info-item">
+      <div class="cb-info-label">Google Scholar</div>
+      <div class="cb-info-val"><a href="https://scholar.google.com/citations?user=OyDtisEAAAAJ&hl=en" target="_blank">View Profile →</a></div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-l"><strong>SUIS Lab</strong> · Sustainable Urban Industrial Space Lab · Gachon University</div>
+  <div class="footer-r">© 2026 Jeong-Il Park</div>
+</footer>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+const cur=window.location.pathname.split('/').pop()||'index.html';
+document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')===cur)a.classList.add('active');});
+</script>
+
+</body></html>

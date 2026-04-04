@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Publications — SUIS Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0a1420;--green:#6ecfa3;--green-dim:rgba(110,207,163,0.4);
+  --white:#fff;--w60:rgba(255,255,255,0.6);--w40:rgba(255,255,255,0.4);
+  --w20:rgba(255,255,255,0.2);--w10:rgba(255,255,255,0.1);
+  --text:#1a1a1a;--muted:#6b6b6b;--border:rgba(0,0,0,0.1);--bg:#f8f7f5;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);overflow-x:hidden;background:#fff;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(10,20,32,0.88);backdrop-filter:blur(14px);border-bottom:.5px solid var(--w10);transition:background .4s;}
+.nav.scrolled{background:rgba(10,20,32,0.98);}
+.nav-brand{text-decoration:none;}
+.nav-brand .main{font-family:'DM Serif Display',serif;font-size:18px;color:var(--white);letter-spacing:-.01em;}
+.nav-brand .sub{font-size:9px;font-weight:300;color:var(--w40);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:11px;color:var(--w60);text-decoration:none;letter-spacing:.07em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);}
+.page-header{background:var(--navy);padding:7rem 3rem 3rem;border-bottom:.5px solid rgba(255,255,255,.08);}
+.page-header .label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--w40);margin-bottom:.5rem;display:flex;align-items:center;gap:8px;}
+.page-header .label::before{content:'';display:inline-block;width:20px;height:.5px;background:var(--w40);}
+.page-header h1{font-family:'DM Serif Display',serif;font-size:40px;color:var(--white);line-height:1.1;letter-spacing:-.02em;}
+.page-header h1 em{color:var(--green);font-style:italic;}
+.section{padding:4rem 3rem;border-bottom:.5px solid var(--border);}
+.section-bg{background:var(--bg);}
+.sec-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.sec-label-kr{font-size:10px;color:var(--muted);opacity:.6;margin-bottom:1.5rem;}
+.contact-bar{background:var(--navy);color:var(--white);padding:3.5rem 3rem;}
+.cb-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;}
+.cb-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--white);margin-bottom:.4rem;}
+.cb-sub{font-size:13px;color:rgba(255,255,255,.45);line-height:1.8;}
+.cb-info-row{display:flex;flex-wrap:wrap;gap:2rem;border-top:.5px solid rgba(255,255,255,.12);padding-top:1.5rem;}
+.cb-info-item{display:flex;flex-direction:column;gap:4px;}
+.cb-info-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.cb-info-val{font-size:15px;color:var(--white);}
+.cb-info-val a{color:var(--green);text-decoration:none;transition:color .2s;}
+.cb-info-val a:hover{color:var(--white);}
+.footer{padding:1.25rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+.footer-l{font-size:11px;color:var(--muted);}
+.footer-l strong{color:var(--text);font-weight:500;}
+.footer-r{font-size:11px;color:var(--muted);}
+@media(max-width:768px){
+  .nav{padding:.9rem 1.5rem;}.nav-links{gap:1rem;}.nav-links a{font-size:10px;}
+  .section,.page-header{padding:3rem 1.5rem;}
+  .contact-bar{padding:2.5rem 1.5rem;}
+  .cb-info-row{flex-direction:column;gap:1.25rem;}
+  .footer{padding:1rem 1.5rem;flex-direction:column;gap:.5rem;}
+}
+
+.pub-section-title{font-family:'DM Serif Display',serif;font-size:32px;font-weight:400;color:var(--text);margin-bottom:.5rem;}
+.pub-section-sub{font-size:13px;color:var(--muted);margin-bottom:2rem;font-style:italic;}
+.pub-list{display:flex;flex-direction:column;gap:0;}
+.pub-item{display:grid;grid-template-columns:68px 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:.5px solid var(--border);align-items:start;}
+.pub-item:first-child{border-top:.5px solid var(--border);}
+.pub-yr{font-family:'DM Serif Display',serif;font-size:20px;color:var(--muted);padding-top:3px;}
+.pub-title{font-size:16px;line-height:1.6;margin-bottom:6px;color:var(--text);font-weight:400;}
+.pub-title a{color:inherit;text-decoration:none;border-bottom:.5px solid var(--border);transition:color .2s,border-color .2s;}
+.pub-title a:hover{color:#185FA5;border-color:#185FA5;}
+.pub-journal{font-size:14px;color:var(--muted);font-style:italic;line-height:1.5;}
+.badge{display:inline-block;font-style:normal;font-size:10px;padding:2px 7px;border-radius:2px;margin-left:5px;letter-spacing:.04em;vertical-align:middle;}
+.b-ssci{background:#0a1420;color:#6ecfa3;}
+.b-scie{background:#185FA5;color:#fff;}
+.b-scopus{background:#5F5E5A;color:#fff;}
+.b-oa{background:#EAF3DE;color:#27500A;}
+.book-card{padding:1.5rem;background:var(--bg);border:.5px solid var(--border);border-radius:8px;margin-bottom:1rem;}
+.book-card h4{font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:.5rem;font-weight:400;}
+.book-card p{font-size:15px;color:var(--muted);line-height:1.8;}
+</style></head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="index.html">
+    <div class="main">SUIS Lab</div>
+    <div class="sub">지속가능한 도시산업공간 연구실</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="news.html">News</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="grants.html">Grants</a></li>
+    <li><a href="pi.html">PI</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="label">SUIS Lab · Publications</div>
+  <h1>Journal Articles<br>&amp; <em>Book Chapters</em></h1>
+</div>
+
+<section class="section">
+  <div class="pub-section-title">Journal Articles</div>
+  <div class="pub-section-sub">peer-reviewed &nbsp;·&nbsp; * corresponding author</div>
+  <div class="pub-list">
+
+    <div class="pub-item">
+      <div class="pub-yr">2025</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1080/12265934.2024.2435844" target="_blank">J-I Park*. The Road to Sustainable Industrial Land Development: Location Patterns, Morphological Characteristics, and Policy Implications of South Korean urban high-tech Industrial Parks.</a></div>
+        <div class="pub-journal">International Journal of Urban Sciences, 29(2), 479–502 <span class="badge b-ssci">SSCI</span><span class="badge b-oa">OA</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2025</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1080/19761597.2024.2355223" target="_blank">T. Choi &amp; J-I Park*. The role of agglomeration in digitalisation and productivity: an empirical examination of manufacturing SMEs in South Korea.</a></div>
+        <div class="pub-journal">Asian Journal of Technology Innovation, 33(1), 227–243 <span class="badge b-ssci">SSCI</span><span class="badge b-oa">OA</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2024</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1016/j.techsoc.2024.102708" target="_blank">J-I Park*. How Does Digitalization Drive Urban Industrial Locations? An Empirical Examination of South Korea's Experience.</a></div>
+        <div class="pub-journal">Technology in Society, 79: 102708 <span class="badge b-ssci">SSCI</span><span class="badge b-oa">OA</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2024</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1016/j.techsoc.2024.102509" target="_blank">J-I Park &amp; T. Choi*. Regional factors associated with smart factory adoption in South Korea.</a></div>
+        <div class="pub-journal">Technology in Society, 77: 102509 <span class="badge b-ssci">SSCI</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2023</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1016/j.cities.2023.104330" target="_blank">J-I Park*. Re-urbanization pattern of manufacturing and characteristics of urban manufacturing in South Korea.</a></div>
+        <div class="pub-journal">Cities, 137: 104330 <span class="badge b-ssci">SSCI</span><span class="badge b-oa">OA</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2023</div>
+      <div>
+        <div class="pub-title">J-I Park*. Analysis of Industrial and Locational Characteristics of Decent Work Supply using Job Posting Big Data.<br><span style="font-size:14px;color:var(--muted);">박정일*. 채용공고 빅데이터를 활용한 괜찮은 일자리 공급의 산업 및 지역입지 특성분석.</span></div>
+        <div class="pub-journal">Journal of the Korean Regional Science Association (지역연구), 39(4): 19–32</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2022</div>
+      <div>
+        <div class="pub-title">A. Son, S. Lee* &amp; J-I Park. Analysis of Location Pattern and Determining Factors of New Industry in Seoul, Korea.<br><span style="font-size:14px;color:var(--muted);">손아람, 이수기*, 박정일. 서울시 신산업의 입지패턴 및 입지결정요인 분석.</span></div>
+        <div class="pub-journal">Journal of the Korean Geographical Society (대한지리학회지), 57(6): 549–565</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2022</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1016/j.jclepro.2021.130209" target="_blank">J-I Park &amp; J-O Kim*. Does industrial land sprawl matter in land productivity? A case study of industrial parks of South Korea.</a></div>
+        <div class="pub-journal">Journal of Cleaner Production, 334: 130209 <span class="badge b-scie">SCIE</span><span class="badge b-oa">OA</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2022</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1080/19761597.2020.1829491" target="_blank">J-I Park &amp; T. Choi*. Related variety, unrelated variety, and R&amp;D investment in the environmental industry.</a></div>
+        <div class="pub-journal">Asian Journal of Technology Innovation, 30(1): 90–105 <span class="badge b-ssci">SSCI</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2020</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1007/s12076-020-00259-w" target="_blank">T. Choi &amp; J-I Park*. Related variety and productivity in the environmental industry: establishment-level evidence from South Korea.</a></div>
+        <div class="pub-journal">Letters in Spatial and Resource Sciences, 13(3): 287–295 <span class="badge b-scopus">Scopus</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2020</div>
+      <div>
+        <div class="pub-title">J-O Kim &amp; J-I Park*. Sustainable Urban Industrial Space Policy: Experiences and Implications from US Cities.<br><span style="font-size:14px;color:var(--muted);">김진오, 박정일*. 지속가능한 도시산업공간 정책: 미국 주요 도시의 경험과 시사점.</span></div>
+        <div class="pub-journal">Journal of the Korean Regional Science Association (지역연구), 36(3): 53–65</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2020</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1016/j.respol.2020.103984" target="_blank">J-I Park*. Industrial diversity in building units and factors associated with diversity: A case study of the Seoul Metropolitan Area.</a></div>
+        <div class="pub-journal">Research Policy, 49(5): 103984 <span class="badge b-ssci">SSCI</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2019</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.3390/su11092515" target="_blank">J-I Park*. A multilevel model approach for assessing the effects of house and neighborhood characteristics on housing vacancy: A case of Daegu, South Korea.</a></div>
+        <div class="pub-journal">Sustainability, 11(9): 2515 <span class="badge b-ssci">SSCI</span><span class="badge b-oa">OA</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2019</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.3390/su11061777" target="_blank">J-I Park &amp; H-S Kwon*. Examining the association between socioeconomic status and exposure to carcinogenic emissions in Gyeonggi of South Korea: A multi-level analysis.</a></div>
+        <div class="pub-journal">Sustainability, 11(6) <span class="badge b-ssci">SSCI</span><span class="badge b-oa">OA</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2019</div>
+      <div>
+        <div class="pub-title">S. Park, S. Lee* &amp; J-I Park. Analysis of Factors Determining the Local Relative Competitiveness of Environmental Industries in South Korea.<br><span style="font-size:14px;color:var(--muted);">박선주, 이수기*, 박정일. 우리나라 환경산업의 상대적 지역경쟁력 제고 요인 분석.</span></div>
+        <div class="pub-journal">Journal of Korea Planning Association (국토계획), 54(3): 119–132</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2018</div>
+      <div>
+        <div class="pub-title">J-I Park* &amp; J-H Kim. A Study on the Change of Population Distribution in Metropolitan Area by the Development of the New Town-type Innovation City: A Case Study of the Daegu Innovation City.<br><span style="font-size:14px;color:var(--muted);">박정일*, 김지혜. 신시가지형 혁신도시 개발에 따른 대도시 인구분포 변화에 관한 연구.</span></div>
+        <div class="pub-journal">Journal of the Korean Regional Science Association (지역연구), 34(3): 55–68</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2018</div>
+      <div>
+        <div class="pub-title">J-I Park* &amp; S-K Oh. Spatial Pattern and Causative Factor Analysis of Vacant Housing in Daegu, South Korea Using Individual-level Building DB.<br><span style="font-size:14px;color:var(--muted);">박정일*, 오상규. 개별건축물 데이터를 활용한 대구광역시 빈집 발생의 공간적 분포 및 발생요인 분석.</span></div>
+        <div class="pub-journal">Journal of the Korean Regional Science Association (지역연구), 34(2): 35–47</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2018</div>
+      <div>
+        <div class="pub-title">H-S Hwang, S. Lee* &amp; J-I Park. Spatial-Temporal Pattern Analysis of Unplanned Factory Locations in the Seoul Metropolitan Area Using FEMIS Data.<br><span style="font-size:14px;color:var(--muted);">황선근, 이수기*, 박정일. 수도권 개별입지 공장의 시공간적 입지특성 분석.</span></div>
+        <div class="pub-journal">Journal of the Korean Regional Science Association (지역연구), 34(2): 21–34</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2017</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1177/0891242417730901" target="_blank">J-I Park*. Who benefits more from manufacturing foreign direct investment? Examining its earnings distribution effects across earnings quantiles.</a></div>
+        <div class="pub-journal">Economic Development Quarterly, 31(4): 285–298 <span class="badge b-ssci">SSCI</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2017</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1016/j.rser.2017.04.061" target="_blank">J-I Park &amp; S. Lee*. Examining the spatial patterns of green industries and the role of government policies in South Korea: Application of a panel regression model (2006–2012).</a></div>
+        <div class="pub-journal">Renewable &amp; Sustainable Energy Reviews, 78: 614–623 <span class="badge b-scie">SCIE</span><span class="badge b-oa">OA</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2017</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1080/10630732.2017.1348883" target="_blank">J-I Park* &amp; N.G. Leigh. Urban industrial land loss and foreign direct investment-related manufacturing job sprawl: An Atlanta, Georgia MSA case study.</a></div>
+        <div class="pub-journal">Journal of Urban Technology, 24(4): 95–113 <span class="badge b-ssci">SSCI</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2017</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1080/07352166.2016.1271660" target="_blank">J-I Park* &amp; N.G. Leigh. Foreign direct investment's role in strengthening metro manufacturing: A case study of the US state of Georgia.</a></div>
+        <div class="pub-journal">Journal of Urban Affairs, 39(5): 597–617 <span class="badge b-ssci">SSCI</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2016</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1016/j.rser.2015.12.299" target="_blank">J-I Park* &amp; T. Kim. Institutional improvement measures for environmental assessment in the pursuit of eco-friendly ocean renewable energy development in South Korea.</a></div>
+        <div class="pub-journal">Renewable and Sustainable Energy Reviews, 58: 526–536 <span class="badge b-scie">SCIE</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2016</div>
+      <div>
+        <div class="pub-title"><a href="https://doi.org/10.1016/j.renene.2016.03.083" target="_blank">T. Kim, J-I Park* &amp; J. Maeng. Offshore wind farm site selection study around Jeju island, South Korea.</a></div>
+        <div class="pub-journal">Renewable Energy, 94: 619–628 <span class="badge b-scie">SCIE</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2016</div>
+      <div>
+        <div class="pub-title">J-I Park &amp; Y. Seo*. Analysis of Birth, Death and Relocation of Knowledge-based Industry of Metropolitan Areas in South Korea through Building a Panel Dataset.<br><span style="font-size:14px;color:var(--muted);">박정일, 서연미*. 패널자료 구축을 통한 대도시권 지식기반산업의 창업·폐업 및 이전 특성 분석.</span></div>
+        <div class="pub-journal">Journal of Korea Planning Association (국토계획), 51(1): 93–112</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2015</div>
+      <div>
+        <div class="pub-title">J-I Park*. Location of Big Box Retailers and Its Accessibility for Minority and Low-income Communities: The Case of Austin, Texas, USA.<br><span style="font-size:14px;color:var(--muted);">박정일*. Location of big box retailers and its accessibility for minority and low-income communities: the case of Austin, Texas, USA.</span></div>
+        <div class="pub-journal">The Korea Spatial Planning Review (국토연구), 87: 97–113</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2015</div>
+      <div>
+        <div class="pub-title">J-I Park*. Modeling and Analysis of Industrial Park Sprawl Index Based on Job Accessibility.<br><span style="font-size:14px;color:var(--muted);">박정일*. 고용접근성에 기반한 산업단지 교외화 지수 개발 및 적용.</span></div>
+        <div class="pub-journal">Journal of Korea Planning Association (국토계획), 50(6): 159–172</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2014</div>
+      <div>
+        <div class="pub-title">J-I Park* &amp; A. Rao. Network-based Walkability Analysis for Evaluating Transit Stop Accessibility.<br><span style="font-size:14px;color:var(--muted);">박정일*, A. Rao. Network-based walkability analysis for evaluating transit stop accessibility.</span></div>
+        <div class="pub-journal">Journal of the Urban Design Institute of Korea (도시설계), 15(4): 189–201</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2014</div>
+      <div>
+        <div class="pub-title">J-I Park &amp; T. Kim*. Improving Policies and Regulations for Environmental-friendly Ocean Renewable Energy Development in Korea.<br><span style="font-size:14px;color:var(--muted);">박정일, 김태윤*. 해양에너지 개발사업의 친환경적 개발을 위한 정책 및 제도개선 방안.</span></div>
+        <div class="pub-journal">Journal of Environmental Impact Assessment (환경영향평가), 23(4): 237–250</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2014</div>
+      <div>
+        <div class="pub-title">T. Kim, J-I Park* &amp; J. Maeng. A Study on the Environmental Assessment Guideline for Tidal Current Energy Development.<br><span style="font-size:14px;color:var(--muted);">김태윤, 박정일*, 맹준호. 조류발전 사업의 환경평가 가이드라인 연구.</span></div>
+        <div class="pub-journal">Journal of the Korean Society of Marine Environment &amp; Safety (해양환경안전학회), 20(4): 345–357</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-yr">2010</div>
+      <div>
+        <div class="pub-title">J. Jung*, J-I Park &amp; D. Lee. The Role of Environmental Assessment for Environmental Land Use Planning.<br><span style="font-size:14px;color:var(--muted);">정주철*, 박정일, 이달별. 환경친화적 토지이용계획 수립을 위한 환경평가의 역할과 특성.</span></div>
+        <div class="pub-journal">Journal of the Korea Society of Environmental Restoration Technology (한국환경복원기술학회지), 13(2): 8–23</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section section-bg">
+  <div class="pub-section-title">Book Chapters</div>
+  <div class="pub-section-sub">저서</div>
+  <div class="book-card">
+    <h4>디지털 기술의 발전과 인구 감소 지역의 영향 (Chapter 7)</h4>
+    <p>인구 감소 시대 지역·도시 정책, 2025. 한국지역학회 기획, 한울아카데미. 제7장 집필.</p>
+  </div>
+  <div class="book-card">
+    <h4>Theories in Industrial Location (Chapter 2)</h4>
+    <p>Territory and Regional Planning (국토·지역계획론), 2022. BoseongGwak: Seoul.<br>대한국토·도시계획학회(공저). 2022. 국토·지역계획론, 보성각. 제2장 산업 및 경제활동 입지이론 (집필)</p>
+  </div>
+</section>
+
+
+<div class="contact-bar" id="contact">
+  <div class="cb-top">
+    <div>
+      <div class="cb-title">Get in Touch</div>
+      <div class="cb-sub">가천대학교 도시계획학과 지속가능한 도시산업공간 연구실</div>
+    </div>
+  </div>
+  <div class="cb-info-row">
+    <div class="cb-info-item">
+      <div class="cb-info-label">Address</div>
+      <div class="cb-info-val">1342 Seongnam-daero, Sujeong-gu, Seongnam-si<br>Gyeonggi-do 13120, Republic of Korea</div>
+    </div>
+    <div class="cb-info-item">
+      <div class="cb-info-label">Email</div>
+      <div class="cb-info-val"><a href="mailto:jeongilp@gachon.ac.kr">jeongilp@gachon.ac.kr</a></div>
+    </div>
+    <div class="cb-info-item">
+      <div class="cb-info-label">Office</div>
+      <div class="cb-info-val">+82 31 750 5279</div>
+    </div>
+    <div class="cb-info-item">
+      <div class="cb-info-label">Google Scholar</div>
+      <div class="cb-info-val"><a href="https://scholar.google.com/citations?user=OyDtisEAAAAJ&hl=en" target="_blank">View Profile →</a></div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-l"><strong>SUIS Lab</strong> · Sustainable Urban Industrial Space Lab · Gachon University</div>
+  <div class="footer-r">© 2026 Jeong-Il Park</div>
+</footer>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+const cur=window.location.pathname.split('/').pop()||'index.html';
+document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')===cur)a.classList.add('active');});
+</script>
+
+</body></html>

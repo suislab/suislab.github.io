@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>News — SUIS Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0a1420;--green:#6ecfa3;--green-dim:rgba(110,207,163,0.4);
+  --white:#fff;--w60:rgba(255,255,255,0.6);--w40:rgba(255,255,255,0.4);
+  --w20:rgba(255,255,255,0.2);--w10:rgba(255,255,255,0.1);
+  --text:#1a1a1a;--muted:#6b6b6b;--border:rgba(0,0,0,0.1);--bg:#f8f7f5;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);overflow-x:hidden;background:#fff;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(10,20,32,0.88);backdrop-filter:blur(14px);border-bottom:.5px solid var(--w10);transition:background .4s;}
+.nav.scrolled{background:rgba(10,20,32,0.98);}
+.nav-brand{text-decoration:none;}
+.nav-brand .main{font-family:'DM Serif Display',serif;font-size:18px;color:var(--white);letter-spacing:-.01em;}
+.nav-brand .sub{font-size:9px;font-weight:300;color:var(--w40);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:11px;color:var(--w60);text-decoration:none;letter-spacing:.07em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);}
+.page-header{background:var(--navy);padding:7rem 3rem 3rem;border-bottom:.5px solid rgba(255,255,255,.08);}
+.page-header .label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--w40);margin-bottom:.5rem;display:flex;align-items:center;gap:8px;}
+.page-header .label::before{content:'';display:inline-block;width:20px;height:.5px;background:var(--w40);}
+.page-header h1{font-family:'DM Serif Display',serif;font-size:40px;color:var(--white);line-height:1.1;letter-spacing:-.02em;}
+.page-header h1 em{color:var(--green);font-style:italic;}
+.section{padding:4rem 3rem;border-bottom:.5px solid var(--border);}
+.section-bg{background:var(--bg);}
+.sec-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.sec-label-kr{font-size:10px;color:var(--muted);opacity:.6;margin-bottom:1.5rem;}
+.contact-bar{background:var(--navy);color:var(--white);padding:3.5rem 3rem;}
+.cb-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;}
+.cb-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--white);margin-bottom:.4rem;}
+.cb-sub{font-size:13px;color:rgba(255,255,255,.45);line-height:1.8;}
+.cb-info-row{display:flex;flex-wrap:wrap;gap:2rem;border-top:.5px solid rgba(255,255,255,.12);padding-top:1.5rem;}
+.cb-info-item{display:flex;flex-direction:column;gap:4px;}
+.cb-info-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.cb-info-val{font-size:15px;color:var(--white);}
+.cb-info-val a{color:var(--green);text-decoration:none;transition:color .2s;}
+.cb-info-val a:hover{color:var(--white);}
+.footer{padding:1.25rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+.footer-l{font-size:11px;color:var(--muted);}
+.footer-l strong{color:var(--text);font-weight:500;}
+.footer-r{font-size:11px;color:var(--muted);}
+@media(max-width:768px){
+  .nav{padding:.9rem 1.5rem;}.nav-links{gap:1rem;}.nav-links a{font-size:10px;}
+  .section,.page-header{padding:3rem 1.5rem;}
+  .contact-bar{padding:2.5rem 1.5rem;}
+  .cb-info-row{flex-direction:column;gap:1.25rem;}
+  .footer{padding:1rem 1.5rem;flex-direction:column;gap:.5rem;}
+}
+
+.news-list{display:flex;flex-direction:column;gap:0;}
+.news-item{display:grid;grid-template-columns:110px 1fr;gap:1.5rem;padding:1.75rem 0;border-bottom:.5px solid var(--border);align-items:start;}
+.news-item:first-child{border-top:.5px solid var(--border);}
+.news-date{font-size:12px;color:var(--muted);padding-top:4px;line-height:1.5;}
+.news-tag{display:inline-block;font-size:9px;padding:2px 7px;border-radius:2px;margin-bottom:.6rem;letter-spacing:.04em;}
+.t-n{background:#E6F1FB;color:#0C447C;}
+.t-p{background:#EAF3DE;color:#27500A;}
+.t-a{background:#FAEEDA;color:#633806;}
+.t-no{background:#F1EFE8;color:#444441;}
+.news-title{font-family:'DM Serif Display',serif;font-size:18px;line-height:1.4;margin-bottom:.5rem;color:var(--text);}
+.news-body{font-size:14px;line-height:1.85;color:var(--muted);}
+.filter-row{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap;}
+.ftag{font-size:11px;padding:5px 14px;border:.5px solid var(--border);border-radius:20px;cursor:pointer;color:var(--muted);background:#fff;transition:all .2s;}
+.ftag:hover,.ftag.on{background:var(--navy);color:var(--white);border-color:var(--navy);}
+</style></head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="index.html">
+    <div class="main">SUIS Lab</div>
+    <div class="sub">지속가능한 도시산업공간 연구실</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="news.html">News</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="grants.html">Grants</a></li>
+    <li><a href="pi.html">PI</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="label">SUIS Lab · Updates</div>
+  <h1>News &amp; <em>Notice</em></h1>
+</div>
+<section class="section">
+  <div class="filter-row">
+    <div class="ftag on">All</div>
+    <div class="ftag">News</div>
+    <div class="ftag">Publication</div>
+    <div class="ftag">Award</div>
+    <div class="ftag">Notice</div>
+  </div>
+  <div class="news-list">
+    <div class="news-item"><div class="news-date">Apr 2026</div><div><span class="news-tag t-n">News</span><div class="news-title">SUIS Lab officially launched at Gachon University</div><div class="news-body">Prof. Jeong-Il Park joins Gachon University (가천대학교) as Associate Professor in the Department of Urban Planning, establishing the SUIS (Sustainable Urban Industrial Space) Lab. The lab focuses on urban industrial land dynamics, digitalization of production, and sustainable regional economic development.</div></div></div>
+    <div class="news-item"><div class="news-date">Mar 2026</div><div><span class="news-tag t-p">Publication</span><div class="news-title">New paper in International Journal of Urban Sciences</div><div class="news-body">J-I Park* (2025). The Road to Sustainable Industrial Land Development: Location Patterns, Morphological Characteristics, and Policy Implications of South Korean urban high-tech Industrial Parks. <em>International Journal of Urban Sciences</em>, 29(2), 479–502. <a href="https://doi.org/10.1080/12265934.2024.2435844" target="_blank" style="color:#185FA5;font-size:12px;">doi →</a></div></div></div>
+    <div class="news-item"><div class="news-date">Feb 2026</div><div><span class="news-tag t-no">Notice</span><div class="news-title">NRF research project (737M KRW) successfully concluded</div><div class="news-body">The 4-year National Research Foundation project "An empirical analysis on the mechanism of digitalization of production and industrial reurbanization" has been completed. Key findings have been published in multiple SSCI journals including Cities, Technology in Society, and Asian Journal of Technology Innovation.</div></div></div>
+    <div class="news-item"><div class="news-date">Aug 2025</div><div><span class="news-tag t-no">Notice</span><div class="news-title">Guest research visit at TU Delft concluded</div><div class="news-body">Prof. Park completed a 6-month guest researcher position at TU Delft (Delft University of Technology), Netherlands, in the Department of Urbanism, Architecture and the Built Environment (Feb.–Aug. 2025).</div></div></div>
+    <div class="news-item"><div class="news-date">Jan 2025</div><div><span class="news-tag t-p">Publication</span><div class="news-title">New paper published in Asian Journal of Technology Innovation</div><div class="news-body">T. Choi &amp; J-I Park* (2025). The role of agglomeration in digitalisation and productivity: an empirical examination of manufacturing SMEs in South Korea. <em>Asian Journal of Technology Innovation</em>, 33(1), 227–243. <a href="https://doi.org/10.1080/19761597.2024.2355223" target="_blank" style="color:#185FA5;font-size:12px;">doi →</a></div></div></div>
+    <div class="news-item"><div class="news-date">Nov 2024</div><div><span class="news-tag t-p">Publication</span><div class="news-title">Two papers published in Technology in Society (2024)</div><div class="news-body">J-I Park* (2024). How Does Digitalization Drive Urban Industrial Locations? <em>Technology in Society</em>, 79: 102708. &amp; J-I Park &amp; T. Choi* (2024). Regional factors associated with smart factory adoption in South Korea. <em>Technology in Society</em>, 77: 102509.</div></div></div>
+    <div class="news-item"><div class="news-date">2025</div><div><span class="news-tag t-p">Publication</span><div class="news-title">New book chapter published — 인구 감소 시대 지역·도시 정책</div><div class="news-body">7장 디지털 기술의 발전과 인구 감소 지역의 영향. 인구 감소 시대 지역·도시 정책, 한국지역학회 기획, 한울아카데미.</div></div></div>
+  </div>
+</section>
+
+<div class="contact-bar" id="contact">
+  <div class="cb-top">
+    <div>
+      <div class="cb-title">Get in Touch</div>
+      <div class="cb-sub">가천대학교 도시계획학과 지속가능한 도시산업공간 연구실</div>
+    </div>
+  </div>
+  <div class="cb-info-row">
+    <div class="cb-info-item">
+      <div class="cb-info-label">Address</div>
+      <div class="cb-info-val">1342 Seongnam-daero, Sujeong-gu, Seongnam-si<br>Gyeonggi-do 13120, Republic of Korea</div>
+    </div>
+    <div class="cb-info-item">
+      <div class="cb-info-label">Email</div>
+      <div class="cb-info-val"><a href="mailto:jeongilp@gachon.ac.kr">jeongilp@gachon.ac.kr</a></div>
+    </div>
+    <div class="cb-info-item">
+      <div class="cb-info-label">Office</div>
+      <div class="cb-info-val">+82 31 750 5279</div>
+    </div>
+    <div class="cb-info-item">
+      <div class="cb-info-label">Google Scholar</div>
+      <div class="cb-info-val"><a href="https://scholar.google.com/citations?user=OyDtisEAAAAJ&hl=en" target="_blank">View Profile →</a></div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-l"><strong>SUIS Lab</strong> · Sustainable Urban Industrial Space Lab · Gachon University</div>
+  <div class="footer-r">© 2026 Jeong-Il Park</div>
+</footer>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+const cur=window.location.pathname.split('/').pop()||'index.html';
+document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')===cur)a.classList.add('active');});
+</script>
+
+</body></html>
